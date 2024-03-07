@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <h2 class="mb-3">New Entry for <%= Place.find_by({"id" => params["place_id"]})["name"] %> </h2>
+  <h2 class="mb-3">New Post for <%= Place.find_by({"id" => params["place_id"]})["name"] %> </h2>
 
   <form action="/entries" method="post" enctype="multipart/form-data"> 
 
