@@ -6,10 +6,10 @@
     <% for entry in @entries %>
       <% if entry["user_id"] == @current_user %>
         <div class="col">
-          <div class="card h-100">
+          <div class="card">
             <div class="card-body">
               <h5 class="card-title"><%= entry["title"] %></h5>
-              <p class="card-text"><small class="text-muted"><%= entry["occurred_on"].strftime("%B %d, %Y") %></small></p>
+              <p class="card-text"><small class="text-muted"><%= entry["occurred_on"]%></small></p>
             </div>
             <% if entry.uploaded_image.attached? %>
               <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid">
