@@ -1,6 +1,10 @@
 class EntriesController < ApplicationController
 
   def new
+    if @current_user == nil
+      flash["notice"] = "You must be logged in to add a new post."
+      redirect_to "/login"
+    end
   end
 
   def create
