@@ -18,18 +18,23 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto align-items-center"> <!-- Add align-items-center for vertical alignment -->
             <% @user = User.find_by({"id" => session["user_id"]}) %>
             <% if @user %>
-              <li class="nav-item">
-                <span class="navbar-text">Hey, <%= @user["first_name"] %></span>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-              </li>
+              <div class="d-flex align-items-center">
+                <li class="nav-item">
+                  <span class="navbar-text me-3">Logged in as: <%= @user["username"] %></span>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Logout</a>
+                </li>
+              </div>
             <% else %>
               <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
+              </li>
+              <li class="nav-item">
+                |
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/users/new">Signup</a>
@@ -40,8 +45,15 @@
       </div>
     </nav>
 
-    <div class="container">
-      <%= flash["notice"] %>
+    <% if flash["notice"] %>
+      <div class="container mt-3">
+        <div class="alert alert-info" role="alert">
+          <%= flash["notice"] %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="container mt-3">
       <%= yield %>
     </div>
   </body>
