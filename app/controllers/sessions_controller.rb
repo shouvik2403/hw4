@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         # add a secure cookie for this user
         session["user_id"] = @user["id"]  
         # display welcome message
-        flash["notice"] = "Welcome #{@user["first_name"]}"
+        flash["notice"] = "Welcome #{@user["username"]}"
         redirect_to "/places"
       else
         flash["notice"] = "Sorry, wrong password!"

@@ -14,7 +14,9 @@ class UsersController < ApplicationController
       @user["password"] = BCrypt::Password.create(params["password"])
       @user.save
       # add a secure cookie for this user
-      session["user_id"] = User.find_by({"email" => @user["email"]})["id"]  
+      session["user_id"] = User.find_by({"email" => @user["email"]})["id"]
+      # display welcome message
+      flash["notice"] = "Welcome #{@user["username"]}"  
       # redirect to places page
       redirect_to "/places"
     else   
